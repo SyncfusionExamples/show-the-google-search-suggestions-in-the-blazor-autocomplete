@@ -4,9 +4,9 @@
 @using System.Net;
 @using System.Text.Json;
 
-<SfAutoComplete @ref="AutoCompleteRef" Placeholder="Search something" TValue="string" TItem="GoogleSearch" Autofill=true Width="500px">
+<SfAutoComplete @ref="AutoCompleteRef" Placeholder="Search something" TValue="string" TItem="GoogleSearch" Width="500px">
     <AutoCompleteFieldSettings Value="SuggestionText" />
-    <AutoCompleteEvents TItem="GoogleSearch" TValue="string" Filtering="@OnCustomFiltring" />
+    <AutoCompleteEvents TItem="GoogleSearch" TValue="string" Filtering="@OnCustomFiltering" />
 </SfAutoComplete>
 @code {
     SfAutoComplete<string, GoogleSearch> AutoCompleteRef { get; set; }
@@ -15,7 +15,7 @@
     {
         public string SuggestionText { get; set; } = String.Empty;
     }
-    private async Task OnCustomFiltring(FilteringEventArgs args)
+    private async Task OnCustomFiltering(FilteringEventArgs args)
     {
         var suggestions = new List<GoogleSearch>();
         var url = "https://suggestqueries.google.com/complete/search?client=firefox&q=" + args.Text;
